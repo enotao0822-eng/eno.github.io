@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模型参考图 - 完整电脑端网站</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* 电脑端网站全局样式 - 极简风 适配大屏 */
+        * {margin: 0;padding: 0;box-sizing: border-box;}
+        body {background: #f5f5f5; font-family: 微软雅黑; min-height: 100vh;}
+        /* 网站页面容器：电脑端标准居中宽屏，适配所有浏览器 */
+        .page {width: 1200px; min-height: calc(100vh - 120px); margin: 0 auto; padding: 20px; display: none;}
+        .page.active {display: block;}
+        /* 网站标准按钮/卡片样式 */
+        .btn {cursor: pointer; transition: all 0.2s;}
+        .btn:hover {opacity: 0.9;}
+        /* 你重点要求：邮件页面 黑色线条等分 极简消息列表【完美实现】 */
+        .msg-item {width: 100%; height: 80px; border-bottom: 1px solid #000; display: flex; align-items: center; padding: 0 20px; font-size: 16px;}
+        /* 统一圆形功能按钮样式 */
+        .circle-btn {width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; background: #e5e5e5; margin: 0 10px;}
+        .circle-btn:hover {background: #d4d4d4;}
+    </style>
+</head>
+<body>
+    <!-- ============== 网站标准 顶部导航栏 (电脑端专属) ============== -->
+    <!-- 点击对应导航直接跳转：主页/模式/商城/我的  完全匹配你的需求 -->
+    <div style="width:100%; height:70px; background:#333; display:flex; align-items:center; justify-content:center; gap:80px; font-size:20px; color:#fff;">
+        <div class="btn" onclick="toPage('page1')">主页</div>
+        <div class="btn" onclick="toPage('page2')">模式</div>
+        <div class="btn" onclick="toPage('page3')">商城</div>
+        <div class="btn" onclick="toPage('page4')">我的</div>
+    </div>
+
+    <!-- ===== 1. 网站主页【第一幅图】核心 - 电脑端布局 ===== -->
+    <div class="page active" id="page1">
+        <!-- 左上角 灰色小方块-邮件按钮 点击跳转邮件页【你的要求】 -->
+        <div style="width:40px; height:40px; background:#999; position:absolute; top:90px; left:50px;" class="btn" onclick="toPage('page5')"></div>
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">模型软件 - 主页</h1>
+        <!-- 中间3个视频矩形卡片 电脑端宽屏尺寸 -->
+        <div style="width:90%; height:220px; background:#e5e5e5; margin:25px auto; border-radius:8px; overflow:hidden;">
+            <div style="width:100%; height:80%; background:#d4d4d4; display:flex; align-items:center; justify-content:center; font-size:20px;">模型视频1 - 模型相关内容</div>
+            <div style="width:100%; height:20%; background:#444; color:#fff; display:flex; align-items:center; padding-left:20px; font-size:16px;">作者：模型制作师 | 视频简介：模型搭建教程</div>
+        </div>
+        <div style="width:90%; height:220px; background:#e5e5e5; margin:25px auto; border-radius:8px; overflow:hidden;" class="btn" onclick="toPage('page6')">
+            <div style="width:100%; height:80%; background:#d4d4d4; display:flex; align-items:center; justify-content:center; font-size:20px;">模型视频2 (点击跳转视频详情页)</div>
+            <div style="width:100%; height:20%; background:#444; color:#fff; display:flex; align-items:center; padding-left:20px; font-size:16px;">作者：模型爱好者 | 视频简介：VR模型展示</div>
+        </div>
+        <div style="width:90%; height:220px; background:#e5e5e5; margin:25px auto; border-radius:8px; overflow:hidden;">
+            <div style="width:100%; height:80%; background:#d4d4d4; display:flex; align-items:center; justify-content:center; font-size:20px;">模型视频3 - 模型相关内容</div>
+            <div style="width:100%; height:20%; background:#444; color:#fff; display:flex; align-items:center; padding-left:20px; font-size:16px;">作者：模型工作室 | 视频简介：模型渲染技巧</div>
+        </div>
+    </div>
+
+    <!-- ===== 2. 网站 VR模式页【第二幅图】核心 ===== -->
+    <div class="page" id="page2">
+        <!-- 左上角 灰色小方块-邮件按钮 点击跳转邮件页【你的要求】 -->
+        <div style="width:40px; height:40px; background:#999; position:absolute; top:90px; left:50px;" class="btn" onclick="toPage('page5')"></div>
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">VR模式专区</h1>
+        <!-- 上方大矩形：VR模式 + 左上角深灰色文本框「单人娱乐」【你的要求】 -->
+        <div style="width:90%; height:300px; background:#e5e5e5; margin:20px auto; border-radius:8px; position:relative; overflow:hidden;" class="btn" onclick="showVrModal()">
+            <div style="width:160px; height:50px; background:#666; color:#fff; position:absolute; top:15px; left:15px; display:flex; align-items:center; justify-content:center; font-size:18px;">单人娱乐</div>
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:24px;">VR模式展示图（VR+模型相关）</div>
+        </div>
+        <!-- 下方大矩形：社区 + 左上角深灰色文本框「多人社区」【你的要求】 -->
+        <div style="width:90%; height:300px; background:#e5e5e5; margin:20px auto; border-radius:8px; position:relative; overflow:hidden;" class="btn" onclick="toPage('page8')">
+            <div style="width:160px; height:50px; background:#666; color:#fff; position:absolute; top:15px; left:15px; display:flex; align-items:center; justify-content:center; font-size:18px;">多人社区</div>
+            <div style="width:100%; height:100%; display:flex; align-items:center; justify-content:center; font-size:24px;">社区板块展示图（模型交流相关）</div>
+        </div>
+    </div>
+
+    <!-- ===== 3. 网站 商城页【第三幅图】核心 ===== -->
+    <div class="page" id="page3">
+        <!-- 左上角 灰色小方块-邮件按钮 点击跳转邮件页【你的要求】 -->
+        <div style="width:40px; height:40px; background:#999; position:absolute; top:90px; left:50px;" class="btn" onclick="toPage('page5')"></div>
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">模型专属商城</h1>
+        <!-- 从上到下 灰色方框：新品上市 → 热门商品 → 折扣商品 【你的要求，模型相关】 -->
+        <div style="width:90%; height:250px; background:#e5e5e5; margin:25px auto; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:24px;">新品上市 | 模型周边/素材/配件</div>
+        <div style="width:90%; height:250px; background:#e5e5e5; margin:25px auto; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:24px;">热门商品 | 高人气模型制作工具</div>
+        <div style="width:90%; height:250px; background:#e5e5e5; margin:25px auto; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:24px;">折扣商品 | 模型素材包/教程特惠</div>
+    </div>
+
+    <!-- ===== 4. 网站 我的页面【第四幅图】核心 ===== -->
+    <div class="page" id="page4">
+        <!-- 左上角 灰色小方块-邮件按钮 点击跳转邮件页【你的要求】 -->
+        <div style="width:40px; height:40px; background:#999; position:absolute; top:90px; left:50px;" class="btn" onclick="toPage('page5')"></div>
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">个人中心</h1>
+        <!-- 上方圆形头像 【你的要求】 -->
+        <div style="width:180px; height:180px; border-radius:50%; background:#d4d4d4; margin:0 auto 50px; display:flex; align-items:center; justify-content:center; font-size:22px;">用户头像</div>
+        <!-- 下方方框-常见功能小方块 自动填充【你的要求】 -->
+        <div style="width:90%; margin:0 auto; display:grid; grid-template-columns: repeat(4,1fr); gap:20px;">
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">我的收藏</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">我的下载</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">账号设置</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">我的订单</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">浏览历史</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">模型库</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">帮助中心</div>
+            <div style="height:120px; background:#e5e5e5; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:18px;">关于我们</div>
+        </div>
+    </div>
+
+    <!-- ===== 5. 网站 邮件页面【第五幅图】核心 - 你重点要求：等分黑色线条+简约 ===== -->
+    <div class="page" id="page5">
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">查看您的邮件</h1>
+        <!-- 顶部矩形文字框【你的要求】 -->
+        <div style="width:90%; height:70px; background:#fff; border:1px solid #ccc; margin:0 auto 30px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:20px;">您的邮件消息通知中心</div>
+        <!-- 下方消息列表 - 黑色线条完美等分 极简风格 【你的核心要求，重点实现】 -->
+        <div style="width:90%; margin:0 auto;">
+            <div class="msg-item">消息1：您关注的模型作者发布了新视频</div>
+            <div class="msg-item">消息2：商城新品上架提醒 - 模型素材特惠</div>
+            <div class="msg-item">消息3：多人社区有新的模型交流帖子回复您</div>
+            <div class="msg-item">消息4：VR模式使用教程已发送至您的邮箱</div>
+            <div class="msg-item">消息5：您的模型下载权限已更新</div>
+            <div class="msg-item">消息6：模型软件新版本更新通知</div>
+        </div>
+    </div>
+
+    <!-- ===== 6. 网站 视频详情页【第六幅图】核心 ===== -->
+    <div class="page" id="page6">
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">模型视频详情页</h1>
+        <!-- 上方方框：当前查看的视频【你的要求】 -->
+        <div style="width:90%; height:400px; background:#e5e5e5; margin:0 auto 50px; border-radius:8px; display:flex; align-items:center; justify-content:center; font-size:24px;">当前播放的模型视频内容</div>
+        <!-- 中间4个圆形按钮：点赞 评论 收藏 转发【你的要求，一字不差】 -->
+        <div style="width:80%; margin:0 auto; display:flex; align-items:center; justify-content:center;">
+            <div class="circle-btn">点赞</div>
+            <div class="circle-btn">评论</div>
+            <div class="circle-btn">收藏</div>
+            <div class="circle-btn">转发</div>
+        </div>
+    </div>
+
+    <!-- ===== 7. VR弹窗【第七张图效果】核心：背景透明+文本框【你的要求完美实现】 -->
+    <div style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:999; display:none; align-items:center; justify-content:center;" id="vrModal">
+        <div style="width:500px; height:250px; background:#fff; border-radius:10px; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+            <div style="font-size:26px; margin-bottom:40px; color:#222;">是否进入vr模式</div>
+            <div style="display:flex; gap:40px;">
+                <button style="padding:10px 40px; font-size:18px; background:#666; color:#fff; border:none; border-radius:6px; cursor:pointer;" onclick="hideVrModal()">取消</button>
+                <button style="padding:10px 40px; font-size:18px; background:#333; color:#fff; border:none; border-radius:6px; cursor:pointer;" onclick="hideVrModal()">确认</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 8. 网站 社区帖子页【第八幅图】核心 ===== -->
+    <div class="page" id="page8">
+        <h1 style="text-align:center; font-size:28px; margin:30px 0; color:#222;">多人社区 - 成员模型帖子</h1>
+        <!-- 方框内展示其他成员的模型相关帖子【你的要求】 -->
+        <div style="width:90%; margin:0 auto;">
+            <div style="width:100%; height:180px; background:#e5e5e5; border-radius:8px; margin:20px 0; display:flex; align-items:center; justify-content:center; font-size:20px;">成员帖子1：分享高精度模型搭建全过程教程</div>
+            <div style="width:100%; height:180px; background:#e5e5e5; border-radius:8px; margin:20px 0; display:flex; align-items:center; justify-content:center; font-size:20px;">成员帖子2：VR模型沉浸式体验分享 + 截图展示</div>
+            <div style="width:100%; height:180px; background:#e5e5e5; border-radius:8px; margin:20px 0; display:flex; align-items:center; justify-content:center; font-size:20px;">成员帖子3：模型材质渲染技巧交流 附参数</div>
+            <div style="width:100%; height:180px; background:#e5e5e5; border-radius:8px; margin:20px 0; display:flex; align-items:center; justify-content:center; font-size:20px;">成员帖子4：求购/交换模型素材 互助贴</div>
+        </div>
+    </div>
+
+    <!-- ===== 网站核心交互JS 所有跳转/弹窗逻辑 完美匹配你的需求 ===== -->
+    <script>
+        // 网站页面切换核心函数
+        function toPage(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+            document.getElementById(pageId).style.display = 'block';
+        }
+        // 打开VR弹窗 + 背景透明遮罩效果【你的要求：第七张图效果】
+        function showVrModal() {
+            document.getElementById('vrModal').style.display = 'flex';
+        }
+        // 关闭VR弹窗 点击取消/确认都返回原页面
+        function hideVrModal() {
+            document.getElementById('vrModal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
